@@ -5,7 +5,6 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import org.lwjgl.input.Keyboard;
 
 import com.example.automine.config.ModConfig;
 import com.example.automine.key.ModKeyBindings;
@@ -13,7 +12,7 @@ import com.example.automine.manager.*;
 import com.example.automine.util.ModLogger;
 import com.example.automine.gui.ModConfigScreen;
 
-public class AutoMineClient {
+public class ClientEventHandler {
     private static Minecraft mc = Minecraft.getMinecraft();
 
     @SubscribeEvent
