@@ -1,0 +1,43 @@
+name: Build Minecraft Mod
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v3
+
+    - name: 设置 JDK 8
+      uses: actions/setup-java@v3
+      with:
+        java-version: '8'
+        distribution: 'temurin'
+
+    - name: 授予 Gradle 执行权限
+      run: chmod +x gradlew
+
+    - name: 使用 Gradle 构建
+      run: ./gradlew build --no-daemon
+
+    - name: 上传构建产物
+      uses: actions/upload-artifact@v3
+      with:
+        name: auto-mine-helper-jar
+        path: build/libs/*.jar
+        retention-days: 30
+
+    - name: 创建 Release（仅当推送标签时）
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: build/libs/*.jar
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

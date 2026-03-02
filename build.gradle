@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://maven.minecraftforge.net/' }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://files.minecraftforge.net/maven' }
+    maven { url = 'https://maven.minecraftforge.net/' }
+}
+
+version = "1.0.0-1.12.2"
+group = "com.example.automine"
+archivesBaseName = "auto-mine-helper"
+
+minecraft {
+    version = "1.12.2-14.23.5.2847"
+    runDir = "run"
+    mappings = "snapshot_20171003"
+}
+
+dependencies {}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}

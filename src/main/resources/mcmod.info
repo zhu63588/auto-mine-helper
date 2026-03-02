@@ -1,0 +1,16 @@
+[
+{
+  "modid": "automine",
+  "name": "Auto Mine Helper",
+  "description": "A Minecraft mod that provides automated mining assistance features including auto-home when inventory is full, auto-respawn, command sequences, whitelist filtering, and move detection.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["AutoMine"],
+  "credits": "Inspired by Auto-Sail",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
