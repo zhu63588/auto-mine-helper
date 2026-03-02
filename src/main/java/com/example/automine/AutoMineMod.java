@@ -1,5 +1,6 @@
 package com.example.automine;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -7,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import com.example.automine.config.ModConfig;
 import com.example.automine.key.ModKeyBindings;
 import com.example.automine.command.AutoMineCommand;
+import com.example.automine.client.ClientEventHandler;
 
 @Mod(modid = AutoMineMod.MODID, name = AutoMineMod.NAME, version = AutoMineMod.VERSION)
 public class AutoMineMod {
@@ -20,6 +22,9 @@ public class AutoMineMod {
         ModConfig.load();
         ModKeyBindings.register();
         AutoMineCommand.register();
+
+        // Register client event handler
+        MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
     }
 
     @Mod.EventHandler
@@ -31,3 +36,4 @@ public class AutoMineMod {
     public void postInit(FMLPostInitializationEvent event) {
     }
 }
+
